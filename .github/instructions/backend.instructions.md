@@ -6,12 +6,23 @@ applyTo: "server/**"
 
 ## Review Format
 
-**IMPORTANT**: All review comments for server-side code MUST start with "REVIEWING SERVER CODE!"
+**IMPORTANT**: All review comments for server-side code MUST start with "REVIEWING SERVER CODE!" followed by a severity indicator.
 
-Example:
+### Severity Indicators
+Use color-coded severity levels to indicate issue importance:
+
+- 🔴 **CRITICAL** - Security vulnerabilities, SQL injection risks, authentication bypasses, data leaks
+- 🟠 **IMPORTANT** - Performance bottlenecks, error handling gaps, API design issues
+- 🟢 **MINOR** - Code style, logging improvements, configuration suggestions
+
+### Format Examples:
 
 ```
-REVIEWING SERVER CODE! This endpoint is missing input validation and error handling for malformed requests.
+REVIEWING SERVER CODE! 🔴 CRITICAL: SQL injection vulnerability detected - user input directly interpolated into query.
+
+REVIEWING SERVER CODE! 🟠 IMPORTANT: Missing error handling for async operations can crash the application.
+
+REVIEWING SERVER CODE! 🟢 MINOR: Consider using environment variables for configuration instead of hardcoded values.
 ```
 
 ## Project Context
@@ -681,9 +692,8 @@ module.exports = config;
 ## Review Comment Templates
 
 ### Security Issues
-
 ```
-REVIEWING SERVER CODE! Security vulnerability: Missing input validation exposes
+REVIEWING SERVER CODE! 🔴 CRITICAL: Security vulnerability - Missing input validation exposes
 the application to injection attacks and data corruption.
 
 Suggested fix:
@@ -691,9 +701,8 @@ Suggested fix:
 ```
 
 ### Performance Issues
-
 ```
-REVIEWING SERVER CODE! Performance concern: This endpoint may cause N+1 query
+REVIEWING SERVER CODE! 🟠 IMPORTANT: Performance concern - This endpoint may cause N+1 query
 problems when loading related data. Consider using populate() or joins.
 
 Suggested fix:
@@ -701,9 +710,8 @@ Suggested fix:
 ```
 
 ### Error Handling Issues
-
 ```
-REVIEWING SERVER CODE! Missing error handling: Unhandled promise rejections
+REVIEWING SERVER CODE! 🟠 IMPORTANT: Missing error handling - Unhandled promise rejections
 can crash the application. Wrap async operations in try-catch blocks.
 
 Suggested fix:
@@ -711,9 +719,8 @@ Suggested fix:
 ```
 
 ### API Design Issues
-
 ```
-REVIEWING SERVER CODE! API design inconsistency: This endpoint doesn't follow
+REVIEWING SERVER CODE! 🟢 MINOR: API design inconsistency - This endpoint doesn't follow
 RESTful conventions and uses inconsistent response format.
 
 Suggested fix:

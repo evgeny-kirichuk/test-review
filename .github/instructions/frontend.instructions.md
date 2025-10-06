@@ -6,12 +6,23 @@ applyTo: "client/src/**"
 
 ## Review Format
 
-**IMPORTANT**: All review comments for client-side code MUST start with "REVIEWING CLIENT CODE!"
+**IMPORTANT**: All review comments for client-side code MUST start with "REVIEWING CLIENT CODE!" followed by a severity indicator.
 
-Example:
+### Severity Indicators
+Use color-coded severity levels to indicate issue importance:
+
+- 🔴 **CRITICAL** - Security vulnerabilities, app-breaking bugs, major performance issues
+- 🟠 **IMPORTANT** - Performance concerns, accessibility violations, state management issues
+- 🟢 **MINOR** - Code style, minor optimizations, best practice suggestions
+
+### Format Examples:
 
 ```
-REVIEWING CLIENT CODE! This component is missing error boundary handling for the async data fetch.
+REVIEWING CLIENT CODE! 🔴 CRITICAL: Direct state mutation detected - this will cause rendering bugs and unpredictable behavior.
+
+REVIEWING CLIENT CODE! 🟠 IMPORTANT: Missing memoization causes unnecessary re-renders and impacts performance.
+
+REVIEWING CLIENT CODE! 🟢 MINOR: Consider using more descriptive variable names for better code readability.
 ```
 
 ## Project Context
@@ -487,9 +498,8 @@ const DataComponent = () => {
 ## Review Comment Templates
 
 ### Performance Issues
-
 ```
-REVIEWING CLIENT CODE! Performance concern: This component re-renders unnecessarily.
+REVIEWING CLIENT CODE! 🟠 IMPORTANT: Performance concern - This component re-renders unnecessarily.
 Consider memoizing with React.memo() and useCallback() for event handlers.
 
 Suggested fix:
@@ -497,9 +507,8 @@ Suggested fix:
 ```
 
 ### State Management Issues
-
 ```
-REVIEWING CLIENT CODE! State mutation detected: Direct modification of state arrays/objects
+REVIEWING CLIENT CODE! 🔴 CRITICAL: State mutation detected - Direct modification of state arrays/objects
 can cause rendering issues. Use immutable update patterns.
 
 Suggested fix:
@@ -507,9 +516,8 @@ Suggested fix:
 ```
 
 ### Error Handling Issues
-
 ```
-REVIEWING CLIENT CODE! Missing error handling: Async operations should include
+REVIEWING CLIENT CODE! 🟠 IMPORTANT: Missing error handling - Async operations should include
 try-catch blocks and user-friendly error states.
 
 Suggested fix:
@@ -517,9 +525,8 @@ Suggested fix:
 ```
 
 ### Accessibility Issues
-
 ```
-REVIEWING CLIENT CODE! Accessibility violation: Missing ARIA labels or keyboard
+REVIEWING CLIENT CODE! 🟠 IMPORTANT: Accessibility violation - Missing ARIA labels or keyboard
 navigation support. This impacts users with disabilities.
 
 Suggested fix:
